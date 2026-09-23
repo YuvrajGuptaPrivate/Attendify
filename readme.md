@@ -100,7 +100,14 @@ For production, this would require backend authentication, encrypted storage, li
 
 ## Screenshots
 
-*Add screenshots of the Login, Admin Dashboard, Staff Profile, Face Enrollment and Attendance screens here.*
+## Screenshots
+
+(S1.png)
+(S2.png)
+
+
+(S3.png)
+(S4.png)
 
 ## License
 
