@@ -15,5 +15,497 @@
     "additional_ai_assistance": "ChatGPT was also used selectively during development to troubleshoot some bugs and technical issues."
   },
   "scope_of_shared_prompt": "The prompt included in this file is the main/base prompt only. It is being shared to provide transparency about how the project was started, rather than representing it as the complete development history.",
-  "main_cloud_code_prompt": "PASTE_YOUR_MAIN_CLOUD_CODE_PROMPT_HERE"
+  "main_cloud_code_prompt": "I need your help to build an Android hiring assignment. This assignment is extremely important to me because I am using it as part of a job interview process, and I have decided to complete the entire project TODAY in a single day.
+
+I have a maximum of 1 day of active development time. I do NOT want to over-engineer this project. I want the simplest, most reliable implementation that satisfies the requirements and actually works on a physical Android device.
+
+Your role:
+Act as my senior Android engineer / pair programmer. Guide me step-by-step while I implement the application. Do not just give me a theoretical solution. Help me actually build, debug, test, and finish the project.
+
+IMPORTANT:
+
+* Prioritize WORKING SOFTWARE over architectural perfection.
+* Prioritize completing all requirements over adding extra features.
+* Do not unnecessarily introduce Firebase, a backend, authentication servers, dependency injection frameworks, or complicated Clean Architecture unless there is a strong reason.
+* Local storage is explicitly allowed by the assignment, so prefer a local-first implementation.
+* Keep the code understandable enough that I can explain every major decision during an interview.
+* Avoid unnecessary abstractions and boilerplate.
+* Do not make me create dozens of files unless they genuinely improve the implementation.
+* If there are two reasonable approaches, choose the simpler and faster one.
+* If something is optional, tell me that it is optional and move on.
+* Never let a nice-to-have feature delay the core functionality.
+* We have approximately one day, so continuously optimize for shipping.
+
+---
+
+## ASSIGNMENT
+
+Android Attendance App — Hiring Assignment
+Version: v2.00_21September2026
+
+Objective:
+Build a simple Android attendance app with two types of users: Admin and Staff.
+
+The main focus is selfie-based face recognition and recording attendance details.
+
+Requirements:
+
+1. Login
+
+* Simple login screen.
+* Dummy credentials for Admin and Staff are acceptable.
+
+2. Admin
+
+* View list of staff.
+* Add a staff member with:
+
+  * Name
+  * Employee ID
+* Open a staff member's profile.
+
+3. Face Enrollment
+
+* Admin should be able to enroll a staff member's face for attendance.
+
+4. Attendance Verification
+
+* Staff should be able to mark attendance ONLY if their face matches the enrolled face.
+
+5. Attendance Data
+   When staff marks attendance, store:
+
+* Timestamp
+* Selfie
+* Location
+
+Technology stack and backend/database are completely open.
+A local database is explicitly allowed.
+
+Timeline:
+2 days officially, but I want to finish the implementation TODAY.
+
+Submission:
+
+* GitHub repository
+* APK
+* Short README containing:
+
+  * Technology/architecture
+  * How to run
+  * Assumptions/limitations
+  * Demo credentials
+* JSON export of the Claude/ChatGPT/other AI conversation used while building
+
+---
+
+## MY PREFERRED TECHNOLOGY
+
+Unless there is a compelling reason otherwise, use:
+
+* Kotlin
+* Jetpack Compose
+* MVVM or a simple ViewModel-based architecture
+* Room
+* CameraX
+* ML Kit Face Detection
+* An on-device face embedding/recognition model if needed
+* Fused Location Provider
+* Kotlin Coroutines
+* Navigation Compose
+
+Local-first implementation.
+
+No backend unless absolutely necessary.
+
+---
+
+## CRITICAL FACE RECOGNITION REQUIREMENT
+
+Do NOT confuse face detection with face recognition.
+
+ML Kit Face Detection can detect/locate a face, but the assignment requires determining whether the current face matches the enrolled employee.
+
+Therefore, help me implement a practical on-device face verification flow.
+
+Preferred conceptual flow:
+
+Enrollment:
+
+Camera
+→ detect exactly one face
+→ crop/prepare face
+→ generate face embedding
+→ save embedding locally
+
+Attendance:
+
+Camera
+→ detect exactly one face
+→ generate embedding
+→ compare with enrolled embedding
+→ calculate similarity
+→ accept/reject based on a configurable threshold
+
+If the chosen embedding model/library is difficult to integrate or causes compatibility problems, tell me immediately and choose the simplest reliable alternative.
+
+Do NOT spend hours trying to build an academically perfect biometric system.
+
+This is a hiring assignment, not a production biometric security product.
+
+We should clearly document limitations such as:
+
+* basic face verification rather than production-grade biometric authentication
+* possible spoofing/photo limitations if applicable
+* threshold calibration limitations
+* local-only storage
+
+---
+
+## DATA MODEL
+
+Prefer something approximately like:
+
+Staff:
+
+* id
+* employeeId
+* name
+* faceEmbedding
+* faceEnrolledAt
+
+Attendance:
+
+* id
+* staffId
+* timestamp
+* latitude
+* longitude
+* selfiePath
+* matchScore
+
+You can modify this if there is a simpler/better implementation.
+
+For images:
+Prefer storing the selfie in app-private file storage and storing its path in Room rather than putting large image blobs directly into the database.
+
+For embeddings:
+Use a practical Room-compatible representation such as serialized FloatArray/JSON/ByteArray depending on the chosen implementation.
+
+---
+
+## USER FLOWS
+
+ADMIN:
+
+Login
+→ Admin Dashboard
+→ Staff List
+→ Add Staff
+→ Staff Profile
+→ Enroll/Re-enroll Face
+→ View attendance information
+
+STAFF:
+
+Login
+→ Staff Dashboard
+→ Mark Attendance
+→ Camera
+→ Face detection
+→ Face verification
+→ Capture selfie
+→ Get location
+→ Save attendance
+→ Show success/failure
+
+---
+
+## IMPORTANT UX / EDGE CASES
+
+Please make the app handle these properly:
+
+Face enrollment:
+
+* No face detected
+* More than one face detected
+* Exactly one face
+* Camera permission denied
+* Enrollment success
+* Re-enrollment
+
+Attendance:
+
+* No enrolled face
+* No face detected
+* Multiple faces
+* Face mismatch
+* Face match
+* Camera permission denied
+* Location permission denied
+* Successful attendance
+* Failed attendance
+
+Attendance should only be saved AFTER successful face verification.
+
+The app should not crash if permissions are denied.
+
+---
+
+## DEMO DATA
+
+Use simple dummy credentials.
+
+Admin:
+[admin@demo.com](mailto:admin@demo.com)
+admin123
+
+Staff:
+[staff@demo.com](mailto:staff@demo.com)
+staff123
+
+Seed a demo staff member if useful:
+
+Name:
+Rahul Sharma
+
+Employee ID:
+EMP001
+
+You may change the name if necessary.
+
+---
+
+## WHAT I NEED FROM YOU
+
+Work with me interactively.
+
+DO NOT dump the entire project into one enormous response.
+
+Instead, break the work into small implementation stages.
+
+For each stage:
+
+1. Tell me exactly what we are building.
+2. Give me the files that need to be created/modified.
+3. Give me complete code for those files when appropriate.
+4. Explain only the important parts.
+5. Tell me exactly how to test that stage.
+6. Wait for me to confirm it works before moving to the next stage.
+7. If I encounter an error, debug that error first instead of continuing.
+
+Use exact package names and consistent naming throughout the project.
+
+Do not randomly change architecture halfway through the implementation.
+
+---
+
+## DEVELOPMENT STRATEGY
+
+I want to follow this order unless you have a strong reason to change it:
+
+PHASE 1
+Project setup
+Gradle dependencies
+Basic Compose UI
+Navigation
+
+PHASE 2
+Login
+Role handling
+Admin/Staff routing
+
+PHASE 3
+Room database
+Staff entity
+Attendance entity
+DAOs
+Repository/ViewModel if needed
+
+PHASE 4
+Admin staff list
+Add staff
+Staff profile
+
+PHASE 5
+CameraX
+Camera permissions
+Face detection
+
+PHASE 6
+Face enrollment
+Face embedding
+Local storage of enrolled face
+
+PHASE 7
+Staff attendance
+Face verification
+Similarity calculation
+Match/mismatch UI
+
+PHASE 8
+Selfie storage
+Location
+Attendance persistence
+
+PHASE 9
+Attendance history/profile
+Error states
+Loading states
+Permission handling
+
+PHASE 10
+Testing
+Bug fixing
+APK build
+README
+GitHub preparation
+AI conversation export
+
+---
+
+## VERY IMPORTANT: TIME MANAGEMENT
+
+Keep a mental "single-day deadline" throughout the project.
+
+If I start trying to add:
+
+* fancy animations
+* backend synchronization
+* cloud storage
+* notifications
+* biometric authentication
+* complex DI
+* advanced analytics
+* unnecessary architecture
+* unnecessary testing frameworks
+* unnecessary UI polish
+
+tell me to STOP and return to the assignment requirements.
+
+The goal is:
+
+100% of required functionality working
+
+NOT:
+
+50% of requirements + 20 impressive extra features.
+
+---
+
+## CODE QUALITY
+
+Even though speed matters, the code should still look like something a junior/mid-level Android developer would reasonably submit for a hiring assignment.
+
+Use:
+
+* meaningful names
+* sensible separation of responsibilities
+* lifecycle-safe code
+* coroutines correctly
+* no blocking work on the main thread
+* proper permission handling
+* no hardcoded sensitive information beyond demo credentials
+* comments only where they actually help
+* no unnecessary complexity
+
+Avoid:
+
+* giant god classes
+* duplicated code
+* deprecated APIs where a simple modern alternative exists
+* fake implementations pretending to be face recognition
+* TODOs in critical functionality
+
+---
+
+## INTERVIEW PREPARATION
+
+After the application is completely working, help me prepare to explain it in an interview.
+
+I should be able to explain:
+
+1. Why I chose the architecture.
+2. Why I chose Room.
+3. Why CameraX.
+4. Difference between face detection and face recognition.
+5. How face embeddings work at a high level.
+6. How face similarity is calculated.
+7. How the threshold works.
+8. How selfie storage works.
+9. Why the image itself isn't stored directly in Room.
+10. How location is obtained.
+11. How permissions are handled.
+12. How the app survives configuration changes.
+13. What happens if the process is killed.
+14. Security/privacy limitations.
+15. What I would change for a production system.
+16. How I would move this architecture to a backend later.
+17. How I would add proper liveness detection.
+18. How I would improve biometric security.
+
+Do not make me memorize things I cannot explain.
+
+---
+
+## FINAL DELIVERABLE CHECKLIST
+
+Before declaring the project complete, make me verify:
+
+FUNCTIONALITY
+[ ] Admin login
+[ ] Staff login
+[ ] Staff list
+[ ] Add staff
+[ ] Staff profile
+[ ] Face enrollment
+[ ] Face re-enrollment
+[ ] Face verification
+[ ] Correct face accepted
+[ ] Incorrect face rejected
+[ ] Selfie saved
+[ ] Timestamp saved
+[ ] Location saved
+[ ] Attendance saved
+[ ] Attendance history
+[ ] Permission handling
+[ ] No crashes in expected edge cases
+
+SUBMISSION
+[ ] GitHub repository
+[ ] APK
+[ ] README
+[ ] Demo credentials
+[ ] Architecture explanation
+[ ] Assumptions/limitations
+[ ] AI conversation JSON export
+
+QUALITY
+[ ] Clean UI
+[ ] Loading states
+[ ] Error states
+[ ] Empty states
+[ ] No obvious crashes
+[ ] Tested on a physical Android device
+[ ] Release APK successfully generated
+
+---
+
+## HOW TO START
+
+Do NOT give me the entire project now.
+
+First, give me:
+
+1. The exact recommended technology stack.
+2. The minimum architecture.
+3. The exact dependencies we need.
+4. The project/package structure.
+5. The order in which we will implement everything.
+6. Any major technical risk you see, especially around face recognition.
+7. Then give me ONLY Phase 1 implementation.
+
+I am starting the project RIGHT NOW.
+
+Treat this as a real pair-programming session where the objective is to get a working APK submitted TODAY."
 }
