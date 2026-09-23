@@ -1,0 +1,19 @@
+{
+  "note_for_reviewer": "This project was developed with AI assistance, and I want to be transparent about that. I used OpenAI/ChatGPT to create the main prompt that I provided to a cloud-based AI coding tool. That prompt served as the initial foundation and helped establish the project's basic structure and direction. A single prompt did not create the complete project. After the initial generation, the project required significant setup, debugging, testing, integration work, and iterative changes. I resolved many issues myself and used ChatGPT for assistance with some bugs and technical problems when needed. The prompt included here is only the main/base prompt used to start the project; it is not presented as a complete record of every AI interaction used during development.",
+  "ai_usage": {
+    "primary_ai_tool": "OpenAI / ChatGPT",
+    "purpose": "Created the main/base prompt used with a cloud-based AI coding tool.",
+    "role_of_base_prompt": "Provided the initial project requirements, architecture direction, and implementation foundation.",
+    "after_initial_generation": [
+      "Project setup and configuration",
+      "Debugging and fixing implementation issues",
+      "Testing and iterative refinement",
+      "Resolving build and dependency problems",
+      "Fixing bugs and edge cases",
+      "Manual development and decision-making"
+    ],
+    "additional_ai_assistance": "ChatGPT was also used selectively during development to troubleshoot some bugs and technical issues."
+  },
+  "scope_of_shared_prompt": "The prompt included in this file is the main/base prompt only. It is being shared to provide transparency about how the project was started, rather than representing it as the complete development history.",
+  "main_cloud_code_prompt": "PASTE_YOUR_MAIN_CLOUD_CODE_PROMPT_HERE"
+}
