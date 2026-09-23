@@ -98,14 +98,7 @@ This is a local demo and intentionally has simplified security:
 
 For production, this would require backend authentication, encrypted storage, liveness detection, secure biometric handling, synchronization, audit logging, and proper threshold validation.
 
-## Screenshots
 
-<p align="center">
-  <img src="S1.jpg" width="220"/>
-  <img src="S2.jpg" width="220"/>
-  <img src="S3.jpg" width="220"/>
-  <img src="S4.jpg" width="220"/>
-</p>
 
 ## License
 
