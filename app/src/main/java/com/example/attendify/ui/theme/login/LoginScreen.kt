@@ -17,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -39,6 +40,7 @@ fun LoginScreen(
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -138,6 +140,7 @@ fun LoginScreen(
                     Spacer(Modifier.height(20.dp))
                     Button(
                         onClick = {
+                            keyboardController?.hide()
                             val role = validateCredentials(email.trim(), password)
                             if (role != null) {
                                 onLoginSuccess(role)

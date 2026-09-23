@@ -1,17 +1,19 @@
 package com.example.attendify.ui.theme.admin
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Groups
+import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
@@ -30,7 +32,8 @@ import com.example.attendify.ui.theme.SimpleViewModelFactory
 @Composable
 fun AdminDashboard(
     onAddStaff: () -> Unit,
-    onOpenStaff: (Long) -> Unit
+    onOpenStaff: (Long) -> Unit,
+    onExitToLogin: () -> Unit = {}
 ) {
     val viewModel: StaffListViewModel = viewModel(
         factory = SimpleViewModelFactory { StaffListViewModel(it) }
@@ -50,8 +53,22 @@ fun AdminDashboard(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Admin Dashboard", fontWeight = FontWeight.Bold) })
-        }
+            TopAppBar(
+                title = {
+                    Text(
+                        "Admin Dashboard",
+                        fontWeight = FontWeight.Bold
+                    )
+                },
+                actions = {
+                    IconButton(onClick = onExitToLogin) {
+                        Icon(
+                            Icons.Default.ExitToApp,
+                            contentDescription = "Exit to login"
+                        )
+                    }
+                }
+            )        }
     ) { padding ->
         Column(
             modifier = Modifier
@@ -245,7 +262,7 @@ private fun StaffCard(staff: StaffEntity, onClick: () -> Unit) {
                 )
             }
             AssistChip(
-                onClick = {},
+                onClick = onClick,
                 label = { Text(if (enrolled) "Enrolled" else "Not Enrolled") },
                 leadingIcon = {
                     Icon(

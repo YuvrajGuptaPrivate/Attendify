@@ -53,8 +53,8 @@ class MainActivity : ComponentActivity() {
                         composable(Screen.AdminDashboard.route) {
                             AdminDashboard(
                                 onAddStaff = { navController.navigate(Screen.AddStaff.route) },
-                                onOpenStaff = { staffId -> navController.navigate(Screen.StaffProfile.createRoute(staffId)) }
-                            )
+                                onOpenStaff = { staffId -> navController.navigate(Screen.StaffProfile.createRoute(staffId)) },
+                                onExitToLogin = exitToLogin)
                         }
                         composable(Screen.StaffList.route) {
                             StaffListScreen(
