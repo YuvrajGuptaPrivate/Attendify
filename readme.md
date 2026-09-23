@@ -100,14 +100,12 @@ For production, this would require backend authentication, encrypted storage, li
 
 ## Screenshots
 
-## Screenshots
-
-(S1.png)
-(S2.png)
-
-
-(S3.png)
-(S4.png)
+<p align="center">
+  <img src="S1.png" width="220"/>
+  <img src="S2.png" width="220"/>
+  <img src="S3.png" width="220"/>
+  <img src="S4.png" width="220"/>
+</p>
 
 ## License
 
