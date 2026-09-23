@@ -4,7 +4,10 @@ An Android attendance app with **Admin** and **Staff** roles. Staff mark attenda
 
 Built as a **hiring assignment** to demonstrate Android development, CameraX, ML Kit, TensorFlow Lite, Room, Compose, and location integration.
 
-> **Note:** This is a demo/hiring assignment, not a production-grade biometric security system.
+## Downloads
+
+- **APK:** [Download Attendify APK](https://drive.google.com/file/d/1zk3cStB0cezc4wY4ULIf62xOg8yHQijJ/view?usp=sharing)
+- **AI Conversation Export:** [View AI Conversation JSON](https://drive.google.com/file/d/1vy2N-ASeMtV3KE4F-m8ZqwG7gFKwZ-dt/view?usp=sharing)
 
 ## Features
 
