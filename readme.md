@@ -9,6 +9,15 @@ Built as a **hiring assignment** to demonstrate Android development, CameraX, ML
 - **APK:** [Download Attendify APK](https://drive.google.com/file/d/1zk3cStB0cezc4wY4ULIf62xOg8yHQijJ/view?usp=sharing)
 - **AI Conversation Export:** [View AI Conversation JSON](https://drive.google.com/file/d/1vy2N-ASeMtV3KE4F-m8ZqwG7gFKwZ-dt/view?usp=sharing)
 
+- ## 🎥 Demo Video
+
+A complete walkthrough of the application is available below:
+
+**[▶️ Watch the Demo Video](https://drive.google.com/file/d/1qNCiHS9mfZ2XOHKOI1LOyig9lRKp2DqI/view?usp=sharing)**
+
+The demo covers the core features, user flows, and overall functionality of the application.
+
+
 ## Features
 
 * Admin & Staff role-based login
