@@ -13,7 +13,7 @@ Built as a **hiring assignment** to demonstrate Android development, CameraX, ML
 
 A complete walkthrough of the application is available below:
 
-**[▶️ Watch the Demo Video](https://drive.google.com/file/d/1qNCiHS9mfZ2XOHKOI1LOyig9lRKp2DqI/view?usp=sharing)**
+**[▶️ Watch the Demo Video](https://drive.google.com/file/d/1qNCiHS9mfZ2XOHKOI1LOyig9lRKp2DqI/view?usp=sharing](https://drive.google.com/file/d/1u_9FFNfoggGdT15D2sgCW85oyyhnMrOb/view?usp=sharing)**
 
 The demo covers the core features, user flows, and overall functionality of the application.
 
